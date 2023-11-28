@@ -1,5 +1,6 @@
 package com.ups.shipping.controller;
 
+import com.ups.shipping.model.ClientShippingOrder;
 import com.ups.shipping.service.KafkaProducer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,8 +16,8 @@ public class Controller {
     private KafkaProducer kafkaProducer;
 
     @PostMapping("/initiate")
-    public void sendMessageToKafka(@RequestBody String message) {
-        System.out.println(message);
+    public void sendMessageToKafka(@RequestBody ClientShippingOrder message) {
+        System.out.println(message.getOrderId());
         kafkaProducer.sendMessage(message);
     }
 }

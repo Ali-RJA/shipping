@@ -1,6 +1,7 @@
 package com.ups.shipping;
 
 import org.apache.kafka.clients.admin.AdminClientConfig;
+import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.common.serialization.StringSerializer;
 import org.springframework.boot.SpringApplication;
@@ -26,7 +27,7 @@ public class ShippingApplication {
 
 
 	@Bean
-	public ProducerFactory<String, String> producerFactory() {
+	public ProducerFactory<String, Object> producerFactory() {
 		Map<String, Object> configProps = new HashMap<>();
 		configProps.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, "pkc-lzvrd.us-west4.gcp.confluent.cloud:9092");
 		configProps.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
@@ -42,7 +43,7 @@ public class ShippingApplication {
 	}
 
 	@Bean
-	public KafkaTemplate<String, String> KafkaTemplate() {
+	public KafkaTemplate<String, Object> KafkaTemplate() {
 		return new KafkaTemplate<>(producerFactory());
 	}
 }
