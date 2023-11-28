@@ -10,7 +10,7 @@ import java.util.UUID;
 @Service
 public class KafkaProducer {
 
-    private static final String TOPIC = "shipping";
+    private static final String TOPIC = "order-shipping";
 
     @Autowired
     private KafkaTemplate<String, Object> kafkaTemplate;
